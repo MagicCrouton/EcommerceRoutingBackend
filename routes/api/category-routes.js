@@ -6,17 +6,29 @@ const { Category, Product } = require('../../models');
 router.get('/', async (req, res) => {
   // find all categories
   // be sure to include its associated Products
-  res.json(await Category.findAll({
+  await Category.findAll({
     include: [{model: Product}]
-  }))
+  })
+  .then((catdata) => {
+    res.json(catdata)
+  })
+  .catch((err) => {
+    res.json(err)
+  })
 });
 
 router.get('/:id', async (req, res) => {
   // find one category by its `id` value
   // be sure to include its associated Products
-  res.json(await Category.findByPk(req.params.id , {
+  await Category.findByPk(req.params.id , {
     include: [{model: Product}]
-  }))
+  })
+  .then((catdata) => {
+    res.json(catdata)
+  })
+  .catch((err) => {
+    res.json(err)
+  })
 });
 
 router.post('/', async (req, res) => {
@@ -37,7 +49,7 @@ router.put('/:id', async (req, res) => {
   },
   {
     where: {
-      category_id: req.body.category_id
+      category_id: req.params.id
     }
   })
   .then((update) => {
@@ -50,7 +62,7 @@ router.delete('/:id', async (req, res) => {
   // delete a category by its `id` value
   await Category.destroy({
     where:{
-      category_id: req.body.category_id
+      category_id: req.params.id
     }
   })
   .then((deletedCat) => {
