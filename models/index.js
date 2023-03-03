@@ -3,7 +3,7 @@ const Product = require('./Product');
 const Category = require('./Category');
 const Tag = require('./Tag');
 const ProductTag = require('./ProductTag');
-const { createQuery } = require('mysql2/typings/mysql/lib/Connection');
+// const { createQuery } = require('mysql2/typings/mysql/lib/Connection');
 
 // Products belongsTo Category
 Product.belongsTo(Category, {
@@ -11,7 +11,7 @@ Product.belongsTo(Category, {
 })
 
 // Categories have many Products
-Category.belongsToMany(Product, {
+Category.hasMany(Product, {
   foreignKey: 'category_id'
 })
 
