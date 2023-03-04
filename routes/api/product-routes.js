@@ -91,7 +91,7 @@ router.put('/:id', (req, res) => {
       // get list of current tag_ids
       const productTagIds = productTags.map(({ tag_id }) => tag_id);
       // create filtered list of new tag_ids
-      console.log(productTagIds)
+      // console.log(productTagIds)
       const newProductTags = req.body.tagIds
         .filter((tag_id) => !productTagIds.includes(tag_id))
         .map((tag_id) => {
@@ -100,12 +100,12 @@ router.put('/:id', (req, res) => {
             tag_id,
           };
         });
-      console.log(newProductTags)
+      // console.log(newProductTags)
       // figure out which ones to remove
       const productTagsToRemove = productTags
         .filter(({ tag_id }) => !req.body.tagIds.includes(tag_id))
         .map(({ tag_id }) => tag_id);
-      console.log(productTagsToRemove)
+      // console.log(productTagsToRemove)
       // run both actions
       return Promise.all([
         ProductTag.destroy({ where: { tag_id: productTagsToRemove } }),
