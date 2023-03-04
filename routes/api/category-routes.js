@@ -53,7 +53,7 @@ router.put('/:id', async (req, res) => {
     }
   })
   .then((update) => {
-    res.json(update);
+    res.json("sucess");
   })
   .catch((err) => res.json(err));
 });
@@ -66,7 +66,7 @@ router.delete('/:id', async (req, res) => {
     }
   })
   .then((deletedCat) => {
-    res.json(`deleted Category ${deletedCat}`)
+    res.json(`deleted Category`)
   })
   .catch((err) => res.json(err));
 });
