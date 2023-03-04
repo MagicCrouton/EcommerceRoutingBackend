@@ -57,11 +57,11 @@ router.put('/:id', async(req, res) => {
 });
 
 router.delete('/:id', async (req, res) => {
-  await Product.destroy({
+  await Tag.destroy({
     where: {tag_id: req.params.id}
   })
   .then((deletedTag) => {
-    res.json(deletedTag)
+    res.json(`deleted Tag ${deletedTag}`)
   })
   .catch((err) => {
     res.json(err)
