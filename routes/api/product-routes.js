@@ -52,11 +52,11 @@ router.post('/', async (req, res) => {
   await Product.create(req.body)
     .then((product) => {
       // if there's product tags, we need to create pairings to bulk create in the ProductTag model
-      console.log(product)
+      // console.log(product)
       if (req.body.tagIds.length) {
         const productTagIdArr = req.body.tagIds.map((tag_id) => {
           return {
-            // had to modify this to get to actually work
+// fixed the traversal to correctly grab the values added product.dataValues to actually get to product ID
             product_id: product.dataValues.product_id,
             tag_id,
           };
@@ -120,7 +120,7 @@ router.delete('/:id', async (req, res) => {
     where: {product_id: req.params.id}
   })
   .then((deletedProd) => {
-    res.json(deletedProd)
+    res.json(`deleted product ${deletedProd}`)
   })
   .catch((err) => {
     res.json(err)

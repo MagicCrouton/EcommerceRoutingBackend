@@ -66,7 +66,7 @@ router.delete('/:id', async (req, res) => {
     }
   })
   .then((deletedCat) => {
-    res.json(deletedCat)
+    res.json(`deleted Category ${deletedCat}`)
   })
   .catch((err) => res.json(err));
 });
